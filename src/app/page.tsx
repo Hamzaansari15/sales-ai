@@ -1,103 +1,185 @@
+"use client";
+
 import Image from "next/image";
+// import PieChart from "../../components/Chart.jsx";
+// import LineChart from "../../components/LineChart.jsx";
+import dynamic from "next/dynamic";
+
+const PieChart = dynamic(() => import("../../components/Chart"), {
+  ssr: false,
+});
+const LineChart = dynamic(() => import("../../components/LineChart"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_250px] mt-12">
+        <div className="flex flex-col gap-12">
+          <div className="md:w-5/6 w-full flex justify-center gap-[4vw]">
+            {/* <div className="w-full flex justify-center"> */}
+            <div className="w-[200px] flex items-center justify-center">
+              <div className="w-full py-4 px-3 bg-white border-[1px] border-[#CACACA] rounded-3xl custom-box-shadow">
+                <div className="w-full relative mt-6 flex justify-center">
+                  <button className="w-12 cursor-pointer absolute h-12 -top-6 bg-success rounded-2xl flex justify-center">
+                    <Image
+                      width={24}
+                      height={24}
+                      src="/images/call-received.svg"
+                      alt="Phone"
+                    />
+                  </button>
+                  <div className="w-full cursor-pointer flex justify-center bg-success text-white font-poppins font-semibold text-[16px] h-[50px] rounded-2xl">
+                    <p className="mt-4 relative z-10 font-responsive">
+                      Successful calls
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 ml-2 flex justify-center">
+                  <h2 className="leading-16 text-center font-poppins text-[64px] text-success font-bold">
+                    82
+                  </h2>
+                  <p className="mt-2 ml-1 text-success font-bold font-poppins">
+                    %
+                  </p>
+                </div>
+              </div>
+              {/* </div> */}
+            </div>
+            {/* <div className="w-full flex justify-center"> */}
+            <div className="w-[200px] flex items-center justify-center">
+              <div className="w-full py-4 px-3 bg-white border-[1px] border-[#CACACA] rounded-3xl custom-box-shadow">
+                <div className="w-full relative mt-6 flex justify-center">
+                  <button className="w-12 cursor-pointer absolute h-12 -top-6 bg-cancel rounded-2xl flex justify-center">
+                    <Image
+                      width={24}
+                      height={24}
+                      src="/images/call-received.svg"
+                      alt="Phone"
+                    />
+                  </button>
+                  <div className="w-full cursor-pointer flex justify-center bg-cancel text-white font-poppins font-semibold text-[16px] h-[50px] rounded-2xl">
+                    <p className="mt-4 relative z-10 font-responsive">
+                      Failed calls
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-6 ml-2 flex justify-center">
+                  <h2 className="leading-16 text-center font-poppins text-[64px] text-cancel font-bold">
+                    82
+                  </h2>
+                  <p className="mt-2 ml-1 text-cancel font-bold font-poppins">
+                    %
+                  </p>
+                </div>
+              </div>
+              {/* </div> */}
+            </div>
+          </div>
+          <div className="md:w-5/6 w-full flex justify-center">
+            <div className="w-64 custom-button-shadow flex justify-center items-center relative h-[77px] rounded-[28px] bg-active">
+              <button className="w-11 h-11 flex justify-center items-center z-10 absolute bg-active -right-4 -top-4 rounded-full">
+                <Image
+                  width={24}
+                  height={24}
+                  src="/images/arrow-right.svg"
+                  alt="Filter"
+                />
+              </button>
+              <div className="flex gap-3 items-center">
+                <Image
+                  width={32}
+                  height={32}
+                  src="/images/grid-edit.svg"
+                  alt="Edit"
+                />
+                <p className="font-poppins font-semibold text-lg text-white">
+                  Create Report
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="mt-8 md:mt-0 w-full flex flex-col items-center">
+          <h4 className="font-poppins font-semibold text-center">
+            Telephony Service Limit
+          </h4>
+          <PieChart />
+
+          <div className="w-full h-[1px] bg-black opacity-10 mt-4" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_250px] mt-8 md:mt-12">
+        <div className="w-full md:w-[92%]">
+          <div className="second-custom-box-shadow rounded-4xl px-2">
+            <LineChart />
+          </div>
+        </div>
+        <div className="w-full mt-20 md:mt-0 relative flex flex-col items-center">
+          <h4 className="font-poppins absolute -top-10 font-semibold text-center">
+            Recent Calls
+          </h4>
+          <div className="w-full border-[1px] border-[#CACACA] rounded-4xl flex flex-col items-center">
+            <div className="h-[64px] mt-3 w-[86%] border-b-[1px] border-[#CACACA] flex justify-between items-center">
+              <Image
+                width={28}
+                height={28}
+                src="/images/call-calling.svg"
+                alt="call"
+              />
+              <div>
+                <p className="font-poppins mb-[2px] text-xs font-medium text-[#787878]">
+                  Ongoing
+                </p>
+                <p className="font-poppins text-xs text-[#787878]">12:45</p>
+              </div>
+            </div>
+            <div className="h-[64px] mt-3 w-[86%] border-b-[1px] border-[#CACACA] flex justify-between items-center">
+              <Image
+                width={28}
+                height={28}
+                src="/images/call-calling.svg"
+                alt="call"
+              />
+              <div>
+                <p className="font-poppins mb-[2px] text-xs font-medium text-[#787878]">
+                  Ongoing
+                </p>
+                <p className="font-poppins text-xs text-[#787878]">12:45</p>
+              </div>
+            </div>
+            <div className="h-[64px] mt-3 w-[86%] border-b-[1px] border-[#CACACA] flex justify-between items-center">
+              <Image
+                width={28}
+                height={28}
+                src="/images/call-calling.svg"
+                alt="call"
+              />
+              <div>
+                <p className="font-poppins mb-[2px] text-xs font-medium text-[#787878]">
+                  Ongoing
+                </p>
+                <p className="font-poppins text-xs text-[#787878]">12:45</p>
+              </div>
+            </div>
+            <div className="h-[64px] mt-3 w-[86%] border-b-[1px] border-[#CACACA] flex justify-between items-center">
+              <Image
+                width={28}
+                height={28}
+                src="/images/call-calling.svg"
+                alt="call"
+              />
+              <div>
+                <p className="font-poppins mb-[2px] text-xs font-medium text-[#787878]">
+                  Ongoing
+                </p>
+                <p className="font-poppins text-xs text-[#787878]">12:45</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,15 +1,17 @@
+// "use client";
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+// import Sidebar from "../../components/Sidebar";
+// import Header from "../../components/Header";
+// import Head from "next/head";
+import Layout from "../../components/Appayout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -24,10 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="p-4 pl-0 flex w-full bg-white">
+        {/* <Sidebar />
+        <div className="mb-6 transition-all duration-500 ease-in-out lg:ml-[340px] ml-4 w-full">
+          <Header />
+          {children}
+        </div> */}
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
