@@ -49,3 +49,7 @@
 .font-responsive {
   font-size: clamp(12px, 1.25vw, 16px);
 }
+
+.custom-card-shadow {
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.15);
+}

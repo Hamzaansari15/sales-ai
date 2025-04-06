@@ -2,8 +2,10 @@
 
 // import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { usePathname } from "next/navigation";
 // import { useState } from "react";
 
 const Sidebar = ({
@@ -13,6 +15,7 @@ const Sidebar = ({
   setActiveSidebar: Dispatch<SetStateAction<boolean>>;
   activeSidebar: boolean;
 }) => {
+  const pathname = usePathname();
   const tabs = [
     {
       title: "Dashboard",
@@ -22,32 +25,32 @@ const Sidebar = ({
     {
       title: "Call Log",
       icon: "/call-minus.svg",
-      url: "/",
+      url: "/call",
     },
     {
       title: "Call Transcripts",
       icon: "/message-text.svg",
-      url: "/",
+      url: "/call",
     },
     {
       title: "Existing Clients",
       icon: "/people.svg",
-      url: "/",
+      url: "/existing-clients",
     },
     {
       title: "Leads",
       icon: "/ranking.svg",
-      url: "/",
+      url: "/leads",
     },
     {
       title: "Distribution List",
       icon: "/document-filter.svg",
-      url: "/",
+      url: "/lists",
     },
     {
       title: "System Health Monitor",
       icon: "/presention-chart.svg",
-      url: "/",
+      url: "/system",
     },
   ];
   console.log(activeSidebar);
@@ -76,23 +79,25 @@ const Sidebar = ({
             {tabs.map((item, index) => {
               return (
                 <li key={item.title} className="mb-8">
-                  <div className="flex items-center gap-4">
-                    <Image
-                      width={24}
-                      height={24}
-                      src={item.icon}
-                      alt="/Group.svg"
-                    />
-                    <p
-                      className={`font-poppins text-[18px] ${
-                        index === 0 ? "text-active" : "text-primary"
-                      }
-                    ${index === 0 ? "font-semibold" : "font-normal"}
+                  <Link href={item.url}>
+                    <div className="flex items-center gap-4">
+                      <Image
+                        width={24}
+                        height={24}
+                        src={item.icon}
+                        alt="/Group.svg"
+                      />
+                      <p
+                        className={`font-poppins text-[18px] ${
+                          pathname === item.url ? "text-active" : "text-primary"
+                        }
+                    ${pathname === item.url ? "font-semibold" : "font-normal"}
                     }`}
-                    >
-                      {item.title}
-                    </p>
-                  </div>
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                  </Link>
                 </li>
               );
             })}

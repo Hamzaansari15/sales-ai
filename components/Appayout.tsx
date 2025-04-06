@@ -10,7 +10,7 @@ const Layout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const [activeSidebar, setActiveSidebar] = useState(true);
+  const [activeSidebar, setActiveSidebar] = useState(false);
   return (
     <>
       <Sidebar
